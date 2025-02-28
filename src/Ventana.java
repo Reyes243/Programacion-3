@@ -1,7 +1,11 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -9,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Ventana extends JFrame{
+	
+	
 	
 	public Ventana(){
 		this.setTitle("Calculadora");
@@ -20,10 +26,18 @@ public class Ventana extends JFrame{
 		this.repaint();
 		this.revalidate();
 		
+		ImageIcon icono =new ImageIcon("imagenes/DarkSouls.png");
+		setIconImage(icono.getImage());
+		
 		this.add(this.calculadora());
 		
+		
+		this.repaint();
+		this.revalidate();
+		
 	}
-
+	
+	
 	public JPanel calculadora() {
 		
 		JPanel panel = new JPanel();
@@ -190,4 +204,16 @@ public class Ventana extends JFrame{
 		return panel;
 	}
 
+	public JPanel calculadoroPro() {
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.decode("#5DE2E7"));
+		panel.setOpaque(true);
+		panel.setLayout(new BorderLayout());
+		
+		
+		
+		
+		return panel;
+	}
 }
