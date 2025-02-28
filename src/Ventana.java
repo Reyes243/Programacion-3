@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 
@@ -19,7 +20,7 @@ public class Ventana extends JFrame{
 	public Ventana(){
 		this.setTitle("Calculadora");
 		this.setVisible(true);
-		this.setSize(305,400);
+		this.setSize(300,400);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(true);
@@ -29,7 +30,8 @@ public class Ventana extends JFrame{
 		ImageIcon icono =new ImageIcon("imagenes/DarkSouls.png");
 		setIconImage(icono.getImage());
 		
-		this.add(this.calculadora());
+		//this.add(this.calculadora());
+		this.add(this.calculadoraPro());
 		
 		
 		this.repaint();
@@ -204,14 +206,52 @@ public class Ventana extends JFrame{
 		return panel;
 	}
 
-	public JPanel calculadoroPro() {
+	public JPanel calculadoraPro() {
 		
+		Font fuente = new Font("arial",Font.BOLD,32); 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.decode("#5DE2E7"));
 		panel.setOpaque(true);
 		panel.setLayout(new BorderLayout());
 		
+		JLabel pantalla = new JLabel("20.00");
+		pantalla.setBackground(Color.WHITE);
+		pantalla.setOpaque(true);
+		pantalla.setFont(fuente);
+		pantalla.setHorizontalAlignment(JLabel.RIGHT);
+		panel.add(pantalla,BorderLayout.NORTH);
 		
+		JPanel centro = new JPanel();
+		centro.setBackground(Color.decode("#000000"));
+		centro.setOpaque(true);
+		centro.setLayout(new BorderLayout());
+		panel.add(centro,BorderLayout.CENTER);
+		
+		JPanel numeros = new JPanel();
+		numeros.setLayout(new GridLayout(4,3));
+		centro.add(numeros,BorderLayout.CENTER);
+		
+		String[] textos = {"9","8","7","6","5","4","3","2","1","0","."};
+		
+		for (String textos_numeros : textos) {
+			
+			JButton boton = new JButton(textos_numeros);
+			numeros.add(boton);
+			
+		}
+		
+		JPanel operaciones = new JPanel();
+		operaciones.setLayout(new GridLayout(6,1));
+		centro.add(operaciones,BorderLayout.LINE_END);
+		
+		String[] textos2 = {"+","-","*","/","=","CE"};
+		
+		for (String textos_operaciones : textos2) {
+			
+			JButton boton2 = new JButton(textos_operaciones);
+			operaciones.add(boton2);
+			
+		}
 		
 		
 		return panel;
