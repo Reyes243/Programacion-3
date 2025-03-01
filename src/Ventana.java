@@ -20,7 +20,7 @@ public class Ventana extends JFrame{
 	public Ventana(){
 		this.setTitle("Calculadora");
 		this.setVisible(true);
-		this.setSize(300,400);
+		this.setSize(800,600);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(true);
@@ -31,7 +31,8 @@ public class Ventana extends JFrame{
 		setIconImage(icono.getImage());
 		
 		//this.add(this.calculadora());
-		this.add(this.calculadoraPro());
+		//this.add(this.calculadoraPro());
+		this.add(this.InterfazMasterPro());
 		
 		
 		this.repaint();
@@ -256,4 +257,106 @@ public class Ventana extends JFrame{
 		
 		return panel;
 	}
+
+	public JPanel InterfazMasterPro() {
+		
+		Font fuente = new Font("Arial",Font.BOLD,32); 
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.decode("#5DE2E7"));
+		panel.setOpaque(true);
+		panel.setLayout(new BorderLayout());
+		
+		JLabel pantalla = new JLabel("Interes");
+		pantalla.setBackground(Color.WHITE);
+		pantalla.setOpaque(true);
+		pantalla.setFont(fuente);
+		pantalla.setHorizontalAlignment(JLabel.LEFT);
+		panel.add(pantalla,BorderLayout.NORTH);
+		
+		
+	
+		
+		
+		
+		JPanel centro = new JPanel();
+		centro.setBackground(Color.decode("#7DDA58"));
+		centro.setOpaque(true);
+		centro.setLayout(new GridLayout(5,5,1,1));
+		panel.add(centro,BorderLayout.CENTER);
+		
+		
+		JLabel titulo = new JLabel("Calcula interes");
+		titulo.setFont(new Font("Arial", Font.BOLD, 30));
+		titulo.setBorder(BorderFactory.createMatteBorder(0, 0, 50, 0,Color.decode("#7DDA58") ));
+		centro.add(titulo);
+		
+		JLabel titulo2 = new JLabel("");
+		centro.add(titulo2);
+		
+		JLabel texto = new JLabel("capital");
+		texto.setBorder(BorderFactory.createMatteBorder(0, 300, 0, 0,Color.decode("#7DDA58") ));
+		centro.add(texto);
+		
+		JTextField tex = new JTextField("1500");
+		tex.setBorder(BorderFactory.createMatteBorder(30, 0, 30,120,Color.decode("#7DDA58") ));
+		centro.add(tex);
+		
+		JLabel texto2 = new JLabel("Tiempo");
+		texto2.setBorder(BorderFactory.createMatteBorder(0, 300, 0, 0,Color.decode("#7DDA58") ));
+		centro.add(texto2);
+		
+		JTextField tex2 = new JTextField("2");
+		tex2.setBorder(BorderFactory.createMatteBorder(30, 0, 30, 120,Color.decode("#7DDA58") ));
+		centro.add(tex2);
+		
+		JLabel texto3 = new JLabel("Tasa de interes");
+		texto3.setBorder(BorderFactory.createMatteBorder(0, 300, 0, 0,Color.decode("#7DDA58") ));
+		centro.add(texto3);
+		
+		JTextField tex3 = new JTextField("0.1");
+		tex3.setBorder(BorderFactory.createMatteBorder(30, 0, 30, 120,Color.decode("#7DDA58") ));
+		centro.add(tex3);
+		
+		JButton boton1 = new JButton("calcular");
+		boton1.setBorder(BorderFactory.createMatteBorder(30, 50, 30, 30,Color.decode("#7DDA58") ));
+		centro.add(boton1);
+		
+		JButton boton2 = new JButton("cancelar");
+		boton2.setBorder(BorderFactory.createMatteBorder(30, 30, 30, 50,Color.decode("#7DDA58") ));
+		centro.add(boton2);
+		
+		JPanel abajo = new JPanel();
+		abajo.setBackground(Color.MAGENTA);
+		abajo.setLayout(new GridLayout(2,2,1,1));
+		panel.add(abajo,BorderLayout.SOUTH);
+		
+		JLabel text = new JLabel("Interes");
+		text.setFont(new Font("Arial", Font.BOLD, 24));
+		text.setBorder(BorderFactory.createMatteBorder(0, 300, 0, 0,Color.MAGENTA));
+		abajo.add(text);
+		
+		JTextField bot = new JTextField("315.000000002");
+		bot.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 120,Color.MAGENTA ));
+		abajo.add(bot);
+		
+		JLabel text2 = new JLabel("Monto");
+		text2.setFont(new Font("Arial", Font.BOLD, 24));
+		text2.setBorder(BorderFactory.createMatteBorder(0, 300, 0, 0,Color.MAGENTA ));
+		abajo.add(text2);
+		
+		JTextField bot2 = new JTextField("1815.00000002");
+		bot2.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 120,Color.MAGENTA ));
+		abajo.add(bot2);
+		
+		
+	
+		
+		
+		
+		
+		
+		return panel;
+	}
+
 }
+
