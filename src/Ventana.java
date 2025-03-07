@@ -1,6 +1,9 @@
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -20,7 +23,7 @@ public class Ventana extends JFrame{
 	public Ventana(){
 		this.setTitle("Calculadora");
 		this.setVisible(true);
-		this.setSize(800,600);
+		this.setSize(800,800);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(true);
@@ -32,7 +35,7 @@ public class Ventana extends JFrame{
 		
 		//this.add(this.calculadora());
 		//this.add(this.calculadoraPro());
-		this.add(this.InterfazMasterPro());
+		//this.add(this.InterfazMasterPro());
 		
 		
 		this.repaint();
@@ -357,6 +360,90 @@ public class Ventana extends JFrame{
 		
 		return panel;
 	}
-
+	
+	@Override
+  	public void paint(Graphics g) {
+  		
+  		super.paint(g);
+  		
+  		Graphics2D g2d = (Graphics2D) g.create ();
+  		g2d.setStroke(new BasicStroke(5));
+  		g2d.setColor(Color.CYAN);
+  		g2d.fillRect(0, 0, 800, 800);	
+  		
+  		g2d.setColor(Color.white);
+  		g2d.fillRect(0, 460, 200, 20);
+  		g2d.fillRect(0, 520, 200, 20);
+  		g2d.fillRect(560, 460, 250, 20);
+  		g2d.fillRect(560, 520, 250, 20);
+  		g2d.fillRect(560, 600, 250, 20);
+  		g2d.fillRect(0, 600, 200, 20);
+  		
+  		g2d.setColor(Color.white);
+  		g2d.fillRect(5, 350, 30, 300);
+  		g2d.fillRect(50, 350, 30, 300);
+  		g2d.fillRect(95, 350, 30, 300);
+  		g2d.fillRect(145, 350, 30, 300);
+  		g2d.fillRect(190, 350, 30, 300);
+  		g2d.fillRect(580, 350, 30, 300);
+  		g2d.fillRect(625, 350, 30, 300);
+  		g2d.fillRect(670, 350, 30, 300);
+  		g2d.fillRect(715, 350, 30, 300);
+  		g2d.fillRect(760, 350, 35, 300);
+  		
+  		
+  		g2d.setColor(Color.MAGENTA);
+  		g2d.drawRect(200, 200, 380, 380);
+  		g2d.fillRect(200, 200, 380, 380);
+  		
+  		g2d.setColor(Color.BLUE);
+  		g2d.drawRect(240, 380, 100, 200);
+  		g2d.fillRect(240,380,100,200);
+  		
+  		g2d.setColor(Color.BLACK);
+  		g2d.drawRect(140, 585, 500, 100);
+  		g2d.fillRect(140, 585, 500, 100);
+  		
+  		g2d.setColor(Color.white);
+  		g2d.fillRect(420, 280, 100, 80);
+  		
+  		g2d.setColor(Color.GRAY);
+  		g2d.drawRect(420, 280, 100, 80);
+  		
+  		g2d.setColor(Color.GREEN);
+  		g2d.drawRect(0, 650, 800, 40);
+  		g2d.fillRect(0, 650, 800, 40);
+  		
+  		g2d.setColor(Color.yellow);
+  		g2d.drawRect(0, 690, 800, 50);
+  		g2d.fillRect(0, 690, 800, 50);
+  		
+  		g2d.setColor(Color.GREEN);
+  		g2d.drawRect(0, 730, 800, 30);
+  		g2d.fillRect(0, 730, 800, 30);
+  		
+  		g2d.setColor(Color.yellow);
+  		g2d.drawRect(0, 760, 800, 40);
+  		g2d.fillRect(0, 760, 800, 40);
+  		g2d.setColor(Color.white);
+  		
+  		g2d.fillArc(325, 470, 15, 15, 0, 360);
+        
+        g2d.setColor(Color.GRAY);
+  		g2d.drawRect(490, 120, 50, 60);
+  		g2d.fillRect(490, 120, 50, 60);
+  		
+  		int[] xs = {600, 200, 350};
+        int[] ys = {200, 200, 50};
+        
+        g2d.setColor(Color.DARK_GRAY);
+        
+        g2d.drawPolygon(xs, ys, 3);
+        g2d.fillPolygon(xs, ys, 3);
+        
+       
+  		
+      
+	}
 }
 
