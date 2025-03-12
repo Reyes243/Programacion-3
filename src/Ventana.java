@@ -23,7 +23,7 @@ public class Ventana extends JFrame{
 	public Ventana(){
 		this.setTitle("Calculadora");
 		this.setVisible(true);
-		this.setSize(800,800);
+		this.setSize(1400,700);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(true);
@@ -367,80 +367,253 @@ public class Ventana extends JFrame{
   		super.paint(g);
   		
   		Graphics2D g2d = (Graphics2D) g.create ();
+  			//Casa
+//  		g2d.setStroke(new BasicStroke(5));
+//  		g2d.setColor(Color.CYAN);
+//  		g2d.fillRect(0, 0, 800, 800);	
+//  		
+//  		g2d.setColor(Color.white);
+//  		g2d.fillRect(0, 460, 200, 20);
+//  		g2d.fillRect(0, 520, 200, 20);
+//  		g2d.fillRect(560, 460, 250, 20);
+//  		g2d.fillRect(560, 520, 250, 20);
+//  		g2d.fillRect(560, 600, 250, 20);
+//  		g2d.fillRect(0, 600, 200, 20);
+//  		
+//  		g2d.setColor(Color.white);
+//  		g2d.fillRect(5, 350, 30, 300);
+//  		g2d.fillRect(50, 350, 30, 300);
+//  		g2d.fillRect(95, 350, 30, 300);
+//  		g2d.fillRect(145, 350, 30, 300);
+//  		g2d.fillRect(190, 350, 30, 300);
+//  		g2d.fillRect(580, 350, 30, 300);
+//  		g2d.fillRect(625, 350, 30, 300);
+//  		g2d.fillRect(670, 350, 30, 300);
+//  		g2d.fillRect(715, 350, 30, 300);
+//  		g2d.fillRect(760, 350, 35, 300);
+//  		
+//  		
+//  		g2d.setColor(Color.MAGENTA);
+//  		g2d.drawRect(200, 200, 380, 380);
+//  		g2d.fillRect(200, 200, 380, 380);
+//  		
+//  		g2d.setColor(Color.BLUE);
+//  		g2d.drawRect(240, 380, 100, 200);
+//  		g2d.fillRect(240,380,100,200);
+//  		
+//  		g2d.setColor(Color.BLACK);
+//  		g2d.drawRect(140, 585, 500, 100);
+//  		g2d.fillRect(140, 585, 500, 100);
+//  		
+//  		g2d.setColor(Color.white);
+//  		g2d.fillRect(420, 280, 100, 80);
+//  		
+//  		g2d.setColor(Color.GRAY);
+//  		g2d.drawRect(420, 280, 100, 80);
+//  		
+//  		g2d.setColor(Color.GREEN);
+//  		g2d.drawRect(0, 650, 800, 40);
+//  		g2d.fillRect(0, 650, 800, 40);
+//  		
+//  		g2d.setColor(Color.yellow);
+//  		g2d.drawRect(0, 690, 800, 50);
+//  		g2d.fillRect(0, 690, 800, 50);
+//  		
+//  		g2d.setColor(Color.GREEN);
+//  		g2d.drawRect(0, 730, 800, 30);
+//  		g2d.fillRect(0, 730, 800, 30);
+//  		
+//  		g2d.setColor(Color.yellow);
+//  		g2d.drawRect(0, 760, 800, 40);
+//  		g2d.fillRect(0, 760, 800, 40);
+//  		g2d.setColor(Color.white);
+//  		
+//  		g2d.fillArc(325, 470, 15, 15, 0, 360);
+//        
+//        	g2d.setColor(Color.GRAY);
+//  		g2d.drawRect(490, 120, 50, 60);
+//  		g2d.fillRect(490, 120, 50, 60);
+//  		
+//  		int[] xs = {600, 200, 350};
+//        	int[] ys = {200, 200, 50};
+//        
+//       	 g2d.setColor(Color.DARK_GRAY);
+//        
+//       	 g2d.drawPolygon(xs, ys, 3);
+//        	g2d.fillPolygon(xs, ys, 3);
+  		
+  		
+  		
+  		//SUPER MARIO 3
   		g2d.setStroke(new BasicStroke(5));
-  		g2d.setColor(Color.CYAN);
-  		g2d.fillRect(0, 0, 800, 800);	
+		g2d.setColor(Color.decode("#85fff5"));
+		g2d.fillRect(0, 0, 1400, 700);
+		
+		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillRoundRect(445, 170, 260, 410, 25, 25);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillRoundRect(480, 220, 260, 410, 25, 25);
+		g2d.setColor(Color.decode("#2eb5ec"));
+  		g2d.fillRoundRect(450, 175, 250, 400, 25, 25);
   		
-  		g2d.setColor(Color.white);
-  		g2d.fillRect(0, 460, 200, 20);
-  		g2d.fillRect(0, 520, 200, 20);
-  		g2d.fillRect(560, 460, 250, 20);
-  		g2d.fillRect(560, 520, 250, 20);
-  		g2d.fillRect(560, 600, 250, 20);
-  		g2d.fillRect(0, 600, 200, 20);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillRoundRect(295, 320, 260, 260, 25, 25);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillRoundRect(330, 370, 260, 260, 25, 25);
+  		g2d.setColor(Color.decode("#fdc2af"));
+  		g2d.fillRoundRect(300, 325, 250, 250, 25, 25);
   		
-  		g2d.setColor(Color.white);
-  		g2d.fillRect(5, 350, 30, 300);
-  		g2d.fillRect(50, 350, 30, 300);
-  		g2d.fillRect(95, 350, 30, 300);
-  		g2d.fillRect(145, 350, 30, 300);
-  		g2d.fillRect(190, 350, 30, 300);
-  		g2d.fillRect(580, 350, 30, 300);
-  		g2d.fillRect(625, 350, 30, 300);
-  		g2d.fillRect(670, 350, 30, 300);
-  		g2d.fillRect(715, 350, 30, 300);
-  		g2d.fillRect(760, 350, 35, 300);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillRoundRect(1195, 320, 260, 260, 25, 25);
+  		g2d.setColor(Color.decode("#42c20f"));
+  		g2d.fillRoundRect(1200, 325, 250, 250, 25, 25);
+  		
+  		g2d.setColor(Color.decode("#2d7f0c"));
+  		g2d.fillRoundRect(950, 320, 125, 70, 25, 25);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.drawRoundRect(875, 320, 200, 70, 25, 25);
+  		
+  		g2d.setColor(Color.decode("#2d7f0c"));
+  		g2d.fillRoundRect(950, 390, 100, 200, 25, 25);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.drawRoundRect(900, 390, 150, 200, 25, 25);
+		
+  		g2d.setColor(Color.decode("#e89729"));
+  		g2d.fillRect(120, 170, 50, 50);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.drawRect(120, 170, 50, 50);
+  		
+  		g2d.setColor(Color.decode("#e89729"));
+  		g2d.fillRect(200, 50, 50, 50);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.drawRect(200, 50, 50, 50);
+  		
+  		g2d.setColor(Color.decode("#e89729"));
+  		g2d.fillRect(250, 50, 50, 50);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.drawRect(250, 50, 50, 50);
+  		
+  		g2d.setColor(Color.decode("#e89729"));
+  		g2d.fillRect(1300, 85, 50, 50);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.drawRect(1300, 85, 50, 50);
+  		
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillOval(125, 175, 6, 6);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillOval(160, 175, 6, 6);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillOval(125, 210, 6, 6);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillOval(160, 210, 6, 6);
+  		
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillOval(205, 55, 6, 6);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillOval(205, 90, 6, 6);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillOval(240, 55, 6, 6);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillOval(240, 90, 6, 6);
+  		
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillOval(255, 55, 6, 6);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillOval(255, 90, 6, 6);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillOval(290, 55, 6, 6);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillOval(290, 90, 6, 6);
+  		
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillOval(1305, 90, 6, 6);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillOval(1305, 125, 6, 6);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillOval(1340, 90, 6, 6);
+  		g2d.setColor(Color.decode("#000000"));
+  		g2d.fillOval(1340, 125, 6, 6);
+  		
+		g2d.setColor(Color.decode("#b28553"));
+		g2d.fillRect(0, 600, 1400, 100);
+
+		g2d.setColor(Color.decode("#f6ab58"));
+		g2d.fillRect(0, 575, 1400, 25);
+		
+		g2d.setColor(Color.decode("#d7ecf0"));
+  		g2d.fillOval(305, 330, 20, 20);
+  		g2d.setColor(Color.decode("#d7ecf0"));
+  		g2d.fillOval(305, 550, 20, 20);
+  		g2d.setColor(Color.decode("#d7ecf0"));
+  		g2d.fillOval(525, 330, 20, 20);
+  		g2d.setColor(Color.decode("#d7ecf0"));
+  		g2d.fillOval(525, 550, 20, 20);
+  		
+  		g2d.setColor(Color.decode("#d7ecf0"));
+  		g2d.fillOval(455, 180, 20, 20);
+  		g2d.setColor(Color.decode("#d7ecf0"));
+  		g2d.fillOval(675, 180, 20, 20);
+  		g2d.setColor(Color.decode("#d7ecf0"));
+  		g2d.fillOval(675, 550, 20, 20);
+  		
+  		g2d.setColor(Color.decode("#d7ecf0"));
+  		g2d.fillOval(1205, 330, 20, 20);
+  		g2d.setColor(Color.decode("#d7ecf0"));
+  		g2d.fillOval(1205, 550, 20, 20);
+		
+  		
+		g2d.setStroke(new BasicStroke(5));
+		g2d.setColor(Color.decode("#6f491e"));
+		g2d.drawRect(10, 600, 1380, 90);
+  		g2d.fillRect(0, 630, 1400, 5);
+  		g2d.fillRect(0, 660, 1400, 5);
+  		g2d.fillRect(50, 600, 5, 90);
+  		g2d.fillRect(90, 600, 5, 90);
+  		g2d.fillRect(130, 600, 5, 90);
+  		g2d.fillRect(170, 600, 5, 90);
+  		g2d.fillRect(210, 600, 5, 90);
+  		g2d.fillRect(250, 600, 5, 90);
+  		g2d.fillRect(290, 600, 5, 90);
+  		g2d.fillRect(330, 600, 5, 90);
+  		g2d.fillRect(370, 600, 5, 90);
+  		g2d.fillRect(410, 600, 5, 90);
+  		g2d.fillRect(450, 600, 5, 90);
+  		g2d.fillRect(490, 600, 5, 90);
+  		g2d.fillRect(530, 600, 5, 90);
+  		g2d.fillRect(570, 600, 5, 90);
+  		g2d.fillRect(610, 600, 5, 90);
+  		g2d.fillRect(650, 600, 5, 90);
+  		g2d.fillRect(690, 600, 5, 90);
+  		g2d.fillRect(730, 600, 5, 90);
+  		g2d.fillRect(770, 600, 5, 90);
+  		g2d.fillRect(810, 600, 5, 90);
+  		g2d.fillRect(850, 600, 5, 90);
+  		g2d.fillRect(890, 600, 5, 90);
+  		g2d.fillRect(930, 600, 5, 90);
+  		g2d.fillRect(970, 600, 5, 90);
+  		g2d.fillRect(1010, 600, 5, 90);
+  		g2d.fillRect(1050, 600, 5, 90);
+  		g2d.fillRect(1090, 600, 5, 90);
+  		g2d.fillRect(1130, 600, 5, 90);
+  		g2d.fillRect(1170, 600, 5, 90);
+  		g2d.fillRect(1210, 600, 5, 90);
+  		g2d.fillRect(1250, 600, 5, 90);
+  		g2d.fillRect(1290, 600, 5, 90);
+  		g2d.fillRect(1330, 600, 5, 90);
+  		g2d.fillRect(1370, 600, 5, 90);
   		
   		
-  		g2d.setColor(Color.MAGENTA);
-  		g2d.drawRect(200, 200, 380, 380);
-  		g2d.fillRect(200, 200, 380, 380);
   		
-  		g2d.setColor(Color.BLUE);
-  		g2d.drawRect(240, 380, 100, 200);
-  		g2d.fillRect(240,380,100,200);
   		
-  		g2d.setColor(Color.BLACK);
-  		g2d.drawRect(140, 585, 500, 100);
-  		g2d.fillRect(140, 585, 500, 100);
   		
-  		g2d.setColor(Color.white);
-  		g2d.fillRect(420, 280, 100, 80);
   		
-  		g2d.setColor(Color.GRAY);
-  		g2d.drawRect(420, 280, 100, 80);
   		
-  		g2d.setColor(Color.GREEN);
-  		g2d.drawRect(0, 650, 800, 40);
-  		g2d.fillRect(0, 650, 800, 40);
   		
-  		g2d.setColor(Color.yellow);
-  		g2d.drawRect(0, 690, 800, 50);
-  		g2d.fillRect(0, 690, 800, 50);
   		
-  		g2d.setColor(Color.GREEN);
-  		g2d.drawRect(0, 730, 800, 30);
-  		g2d.fillRect(0, 730, 800, 30);
   		
-  		g2d.setColor(Color.yellow);
-  		g2d.drawRect(0, 760, 800, 40);
-  		g2d.fillRect(0, 760, 800, 40);
-  		g2d.setColor(Color.white);
   		
-  		g2d.fillArc(325, 470, 15, 15, 0, 360);
-        
-        g2d.setColor(Color.GRAY);
-  		g2d.drawRect(490, 120, 50, 60);
-  		g2d.fillRect(490, 120, 50, 60);
   		
-  		int[] xs = {600, 200, 350};
-        int[] ys = {200, 200, 50};
-        
-        g2d.setColor(Color.DARK_GRAY);
-        
-        g2d.drawPolygon(xs, ys, 3);
-        g2d.fillPolygon(xs, ys, 3);
-        
+
        
   		
       
