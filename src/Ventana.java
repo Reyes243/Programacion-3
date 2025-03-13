@@ -19,6 +19,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -390,8 +391,6 @@ public class Ventana extends JFrame{
 		etiqueta1.setFont(new Font("Corbel", Font.BOLD, 24));	
 		ventanaPanel.add(etiqueta1);
 		
-		
-		//------------------- OPCIONES LADO IZQUIERDO DEL PANEL -------------------
 		JLabel etiqueta2 = new JLabel("Nombre de usuario:");
 		etiqueta2.setSize(200, 30);
 		etiqueta2.setLocation(40, 100);
@@ -536,9 +535,9 @@ public class Ventana extends JFrame{
 		casilla.setFont(new Font("Corbel", Font.BOLD, 12));	
 		ventanaPanel.add(casilla);
 		
-		JLabel olvidada = new JLabel("<html><u>¿Has olvidado la contraseña?</u></html>");//subraya texto
-		olvidada.setForeground(Color.BLUE);//color para simular un hipervinculo
-		olvidada.setCursor(new Cursor(Cursor.HAND_CURSOR));//aqui se cambia la forma del cursor al tocar el texto
+		JLabel olvidada = new JLabel("<html><u>¿Has olvidado la contraseña?</u></html>");
+		olvidada.setForeground(Color.BLUE);
+		olvidada.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		olvidada.setSize(200, 30);
 		olvidada.setLocation(370, 660);
 		olvidada.setFont(new Font("Corbel", Font.BOLD, 12));	
@@ -551,6 +550,8 @@ public class Ventana extends JFrame{
 		ventanaPanel.add(inicioSesion);
 		
 		inicioSesion.addActionListener(new ActionListener() {
+			
+			 Boolean pas1=false; Boolean pas2=false;
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -565,6 +566,7 @@ public class Ventana extends JFrame{
 					email.setBorder(BorderFactory.createLineBorder(Color.red,3));
 				} else {
 					email.setBorder(BorderFactory.createLineBorder(Color.green,3));
+					pas1=true;
 				}
 				
 				String myPassword = new String (password.getPassword());
@@ -573,9 +575,21 @@ public class Ventana extends JFrame{
 					password.setBorder(BorderFactory.createLineBorder(Color.red,3));
 				} else {
 					password.setBorder(BorderFactory.createLineBorder(Color.green,3));
+					pas2=true;
 				}
 				
-				
+				if(pas1 && pas2) {
+					
+					if(email.getText().equals("reyes@gmail.com")) {
+						if(myPassword.equals("contra123"))
+							JOptionPane.showMessageDialog(null, "Bienvenido","hola",JOptionPane.WARNING_MESSAGE);
+						else
+							JOptionPane.showMessageDialog(null, "Fatal error","hola",JOptionPane.WARNING_MESSAGE);
+					}
+					else
+						JOptionPane.showMessageDialog(null, "Fatal error","hola",JOptionPane.WARNING_MESSAGE);
+					
+				}
 				
 				
 			}
