@@ -16,15 +16,22 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 public class Ventana extends JFrame{
 	
@@ -47,6 +54,150 @@ public class Ventana extends JFrame{
 		//this.add(this.calculadoraPro());
 		//this.add(this.InterfazMasterPro());
 		this.add(this.login());
+		//this.add(this.registro());
+		
+		
+		JMenuBar barra = new JMenuBar();
+        JMenu file = new JMenu("Archivo");
+        barra.add(file);
+        JMenuItem open = new JMenuItem("Abrir");
+        file.add(open);
+        JMenuItem op_2 = new JMenuItem("Guardar");
+        file.add(op_2);
+        JMenuItem close = new JMenuItem("Cerrar");
+        file.add(close);
+        
+        JMenu file2 = new JMenu("Cuenta");
+        barra.add(file2);
+        JMenuItem log = new JMenuItem("Inicio de sesion");
+        file2.add(log);
+        JMenuItem registro = new JMenuItem("Registro");
+        file2.add(registro);
+        JMenuItem recuperacion = new JMenuItem("Recuperacion de cuenta");
+        file2.add(recuperacion);
+        
+        JMenu file3 = new JMenu("Usuario");
+        barra.add(file3);
+        JMenuItem alta = new JMenuItem("Dar de alta a un usuario");
+        file3.add(alta);
+        JMenuItem baja = new JMenuItem("Dar de baja a un usuario");
+        file3.add(baja);
+        JMenuItem consulta = new JMenuItem("Consulltar a un usuario");
+        file3.add(consulta);
+        
+        JMenu file4 = new JMenu("Ayuda");
+        barra.add(file4);
+        JMenuItem Ayudausuario = new JMenuItem("Ayuda para crear un usuario");
+        file4.add(Ayudausuario);
+        JMenuItem ayudaacceso = new JMenuItem("Ayuda para acceder a sistema");
+        file4.add(ayudaacceso);
+        JMenuItem ayudarecuperar = new JMenuItem("Ayuda para recuperar contraseña");
+        file4.add(ayudarecuperar);
+        
+        
+        
+        this.setJMenuBar(barra);
+        this.repaint();
+		this.revalidate();
+        
+        log.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                router("login");
+            }
+        });
+
+        
+        registro.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                router("register");
+            }
+        });
+        
+        consulta.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                router("Consultar");
+            }
+        });
+    
+		recuperacion.addActionListener(new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            router("Recuperacion");
+	        }
+	    });
+		ayudarecuperar.addActionListener(new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            router("Ayuda para recuperacion contra");
+	        }
+	    });
+		Ayudausuario.addActionListener(new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            router("ayuda crear usuario");
+	        }
+	    });
+		ayudaacceso.addActionListener(new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            router("ayuda para acceder al sistema");
+	        }
+	    });
+		alta.addActionListener(new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            router("Dar de alta a un usuario");
+	        }
+	    });
+		baja.addActionListener(new ActionListener() {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            router("Dar de baja a un usuario");
+	        }
+	    });
+	}
+
+  
+    public void router(String page) {
+        this.getContentPane().removeAll(); 
+        
+
+        
+        if (page.equals("login")) {
+            this.add(this.login());
+        }  
+        if (page.equals("register")) {
+            this.add(this.registro());
+        }
+        if (page.equals("Consultar")) {
+            this.add(this.Consultar());
+        }
+        if (page.equals("Recuperacion")) {
+            this.add(this.RecuperacionDeCuenta());
+        }
+        if (page.equals("Ayuda para recuperacion contra")) {
+            this.add(this.AyudaContra());
+        }
+        if (page.equals("ayuda crear usuario")) {
+            this.add(this.ayudaUsuario());
+        }
+        if (page.equals("ayuda para acceder al sistema")) {
+            this.add(this.AyudaAcceso());
+        }
+        if (page.equals("Dar de alta a un usuario")) {
+            this.add(this.AltaUsuario());
+        }
+        if (page.equals("Dar de baja a un usuario")) {
+            this.add(this.BajaUsuario());
+        }
+      
+        
+        
+		
+		
 		
 		
 		this.repaint();
@@ -373,10 +524,170 @@ public class Ventana extends JFrame{
 	}
 	
 	public JPanel login() {
+
+		JPanel panel = new JPanel();
+
+		panel.setBackground(Color.decode("#076990"));
+		panel.setOpaque(true);
+		panel.setSize(1000, 500);
+		panel.setLocation(0, 0);
+		panel.setLayout(null);
+
+		JLabel etiqueta1 = new JLabel("Bienvenido");
+		etiqueta1.setSize(100, 50);
+		etiqueta1.setLocation(200, 10);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("Cambria", Font.BOLD, 18));
+		panel.add(etiqueta1);
+
+		JLabel etiqueta2 = new JLabel("Usuario/Email: ");
+		etiqueta2.setSize(200, 30);
+		// etiqueta2.setOpaque(true);
+		etiqueta2.setHorizontalAlignment(JLabel.HEIGHT);
+		etiqueta2.setFont(new Font("Cambria", Font.BOLD, 14));
+		etiqueta2.setLocation(200, 75);
+		panel.add(etiqueta2);
+
+		JTextField email = new JTextField();
+		email.setSize(250, 30);
+		email.setOpaque(true);
+		email.setHorizontalAlignment(JLabel.HEIGHT);
+		email.setFont(new Font("Cambria", Font.BOLD, 14));
+		email.setLocation(125, 105);
+		panel.add(email);
+
+		JLabel etiqueta3 = new JLabel("Contraseña: ");
+		etiqueta3.setSize(200, 30);
+		// etiqueta2.setOpaque(true);
+		etiqueta3.setHorizontalAlignment(JLabel.HEIGHT);
+		etiqueta3.setFont(new Font("Cambria", Font.BOLD, 14));
+		etiqueta3.setLocation(200, 135);
+		panel.add(etiqueta3);
+
+		JPasswordField pass = new JPasswordField();
+		pass.setSize(250, 30);
+		pass.setOpaque(true);
+		pass.setHorizontalAlignment(JLabel.HEIGHT);
+		pass.setFont(new Font("Cambria", Font.BOLD, 14));
+		pass.setLocation(125, 165);
+		panel.add(pass);
+		
+	
+		JButton join = new JButton("Iniciar sesion");
+		join.setSize(150, 50);
+		join.setBackground(Color.LIGHT_GRAY);
+		join.setFont(new Font("Cambria", Font.BOLD, 14));
+		join.setLocation(200, 250);
+		panel.add(join);
+		
+		join.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Boolean flag1 = false, flag2 = false;
+				
+				if (email.getText().equals("")) {
+					email.setBorder(BorderFactory.createLineBorder(Color.RED,3));
+					JOptionPane.showMessageDialog(null, "Fatal error","hola",JOptionPane.WARNING_MESSAGE);
+					
+				}else {
+					email.setBorder(BorderFactory.createLineBorder(Color.green,3));
+					flag1 = true;
+				}
+				
+				String myPassword = new String(pass.getPassword());
+				if (myPassword.equals("")) {
+					pass.setBorder(BorderFactory.createLineBorder(Color.RED,3));
+					JOptionPane.showMessageDialog(null, "Fatal error","hola",JOptionPane.WARNING_MESSAGE);
+					
+				}else {
+					pass.setBorder(BorderFactory.createLineBorder(Color.green,3));
+					flag2 = true;
+				}
+				
+				if (flag1 && flag2) {
+					if(email.getText().equals("reyes@gmail.com")) {
+						if(myPassword.equals("contra123"))
+							JOptionPane.showMessageDialog(null, "Bienvenido","hola",JOptionPane.WARNING_MESSAGE);
+						else
+							JOptionPane.showMessageDialog(null, "Fatal error","hola",JOptionPane.WARNING_MESSAGE);
+					}
+					else
+						JOptionPane.showMessageDialog(null, "Fatal error","hola",JOptionPane.WARNING_MESSAGE);
+				}
+			}
+			
+		});
+		
+		JButton ir_registro = new JButton("Ir al registro");
+		ir_registro.setSize(130, 50);
+		ir_registro.setBackground(Color.LIGHT_GRAY);
+		ir_registro.setFont(new Font("Cambria", Font.BOLD, 12));
+		ir_registro.setLocation(200, 320);
+		panel.add(ir_registro);
+		
+		ir_registro.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				router("register");
+				
+			}
+			
+		});
+	
+	
+		
+		
+		
+
+		JLabel etiqueta4 = new JLabel("Olvidaste tu contraseña? ");
+		etiqueta4.setSize(200, 30);
+		// etiqueta2.setOpaque(true);
+		etiqueta4.setHorizontalAlignment(JLabel.HEIGHT);
+		etiqueta4.setFont(new Font("Cambria", Font.BOLD, 10));
+		etiqueta4.setLocation(270, 200);
+		panel.add(etiqueta4);
+
+		JCheckBox boton = new JCheckBox("Recordar");
+		boton.setSize(85, 30);
+		boton.setLocation(120, 200);
+		boton.setFont(new Font("Cambria", Font.BOLD, 10));
+		boton.setBackground(Color.decode("#789090"));
+		panel.add(boton);
+		
+		ImageIcon imagen = new ImageIcon("imagenes/usuario.png");
+		JLabel icon_user = new JLabel();
+		icon_user.setBounds(90, 103, 30, 30);
+		icon_user.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(icon_user.getWidth(), icon_user.getHeight(),Image.SCALE_DEFAULT)));
+		panel.add(icon_user);
+		
+		ImageIcon imagen2 = new ImageIcon("imagenes/password.png");
+		JLabel icon_pass = new JLabel();
+		icon_pass.setBounds(90, 165, 30, 30);
+		icon_pass.setIcon(new ImageIcon(imagen2.getImage().getScaledInstance(icon_pass.getWidth(), icon_pass.getHeight(),Image.SCALE_DEFAULT)));
+		panel.add(icon_pass);
+		
+		ImageIcon imagen3 = new ImageIcon("imagenes/logo.png");
+		JLabel logo = new JLabel();
+		logo.setBounds(400, 0, 500, 500);
+		logo.setIcon(new ImageIcon(imagen3.getImage().getScaledInstance(logo.getWidth(), logo.getHeight(),Image.SCALE_SMOOTH)));
+		panel.add(logo);
+		
+		
+
+
+
+		return panel;
+	}
+	
+	public JPanel registro() {
 		
 		JPanel ventanaPanel = new JPanel();
 		
-		ventanaPanel.setBackground(Color.decode("#feefda"));
+		ventanaPanel.setBackground(Color.decode("#3bf484"));
 		ventanaPanel.setOpaque(true);
 		ventanaPanel.setSize(500,500);
 		ventanaPanel.setLocation(0,0);
@@ -393,159 +704,55 @@ public class Ventana extends JFrame{
 		
 		JLabel etiqueta2 = new JLabel("Nombre de usuario:");
 		etiqueta2.setSize(200, 30);
-		etiqueta2.setLocation(40, 100);
+		etiqueta2.setLocation(240, 100);
 		etiqueta2.setFont(new Font("Corbel", Font.BOLD, 18));	
 		ventanaPanel.add(etiqueta2);
 		
 		JTextField usuario = new JTextField();
 		usuario.setSize(290, 30);
-		usuario.setLocation(40, 130);
+		usuario.setLocation(240, 130);
 		usuario.setFont(new Font("Corbel", Font.BOLD, 18));
 		ventanaPanel.add(usuario);
 		
 		JLabel etiqueta3 = new JLabel("Correo electronico:");
 		etiqueta3.setSize(200, 30);
-		etiqueta3.setLocation(40, 170);
+		etiqueta3.setLocation(240, 170);
 		etiqueta3.setFont(new Font("Corbel", Font.BOLD, 18));	
 		ventanaPanel.add(etiqueta3);
 		
 		JTextField email = new JTextField();
 		email.setSize(290, 30);
-		email.setLocation(40, 200);
+		email.setLocation(240, 200);
 		email.setFont(new Font("Corbel", Font.BOLD, 18));	
 		ventanaPanel.add(email);
 		
 		JLabel etiqueta4 = new JLabel("Contraseña:");
 		etiqueta4.setSize(200, 30);
-		etiqueta4.setLocation(40, 260);
+		etiqueta4.setLocation(240, 260);
 		etiqueta4.setFont(new Font("Corbel", Font.BOLD, 18));	
 		ventanaPanel.add(etiqueta4);
 		
 		JPasswordField password = new JPasswordField();
 		password.setSize(290, 30);
-		password.setLocation(40, 290);
+		password.setLocation(240, 290);
 		password.setFont(new Font("Corbel", Font.BOLD, 18));	
 		ventanaPanel.add(password);
 		
 		JLabel sexo = new JLabel("Sexo:");
 		sexo.setSize(200, 30);
-		sexo.setLocation(40, 350);
+		sexo.setLocation(240, 350);
 		sexo.setFont(new Font("Corbel", Font.BOLD, 18));	
 		ventanaPanel.add(sexo);
 		
 		String[] opcionesSexo = {"Masculino", "Femenimo", "Otro..."};
 		JComboBox<String> sexos = new JComboBox<String>(opcionesSexo);
 		sexos.setSize(100,30);
-		sexos.setLocation(100,350);
+		sexos.setLocation(300,350);
 		ventanaPanel.add(sexos);
-		
-		
-		JLabel etiqueta5 = new JLabel("Preferencias de contenido:");
-		etiqueta5.setSize(220, 30);
-		etiqueta5.setLocation(380, 100);
-		etiqueta5.setFont(new Font("Corbel", Font.BOLD, 18));	
-		ventanaPanel.add(etiqueta5);
-		
-		JCheckBox preferencia1 = new JCheckBox("Deportes");
-		preferencia1.setSize(108, 30);
-		preferencia1.setOpaque(false);
-		preferencia1.setLocation(380, 140);
-		preferencia1.setFont(new Font("Corbel", Font.BOLD, 16));	
-		ventanaPanel.add(preferencia1);
-		
-		JCheckBox preferencia2 = new JCheckBox("Peliculas");
-		preferencia2.setSize(108, 30);
-		preferencia2.setOpaque(false);
-		preferencia2.setLocation(500, 140);
-		preferencia2.setFont(new Font("Corbel", Font.BOLD, 16));	
-		ventanaPanel.add(preferencia2);
-		
-		JCheckBox preferencia3 = new JCheckBox("Literatura");
-		preferencia3.setSize(108, 30);
-		preferencia3.setOpaque(false);
-		preferencia3.setLocation(380, 180);
-		preferencia3.setFont(new Font("Corbel", Font.BOLD, 16));	
-		ventanaPanel.add(preferencia3);
-		
-		JCheckBox preferencia4 = new JCheckBox("Videojuegos");
-		preferencia4.setSize(130, 30);
-		preferencia4.setOpaque(false);
-		preferencia4.setLocation(500, 180);
-		preferencia4.setFont(new Font("Corbel", Font.BOLD, 16));	
-		ventanaPanel.add(preferencia4);
-		
-		JCheckBox preferencia5 = new JCheckBox("Noticias");
-		preferencia5.setSize(130, 30);
-		preferencia5.setOpaque(false);
-		preferencia5.setLocation(500, 220);
-		preferencia5.setFont(new Font("Corbel", Font.BOLD, 16));	
-		ventanaPanel.add(preferencia5);
-		
-		JCheckBox preferencia6 = new JCheckBox("Ciencia");
-		preferencia6.setSize(108, 30);
-		preferencia6.setOpaque(false);
-		preferencia6.setLocation(380, 220);
-		preferencia6.setFont(new Font("Corbel", Font.BOLD, 16));	
-		ventanaPanel.add(preferencia6);
-		
-		
-		JLabel bio = new JLabel("Biografia:");
-		bio.setSize(200, 30);
-		bio.setLocation(40, 410);
-		bio.setFont(new Font("Corbel", Font.BOLD, 18));	
-		ventanaPanel.add(bio);
-		
-		JTextArea biografia = new JTextArea(5,10);
-		biografia.setSize(440, 100);
-		biografia.setLocation(40, 440);
-		biografia.setFont(new Font("Corbel", Font.BOLD, 15));
-		biografia.setLineWrap(true);
-		biografia.setWrapStyleWord(true);
-		ventanaPanel.add(biografia);
-		
-		
-		
-		JButton terminos = new JButton("Terminos y condiciones");
-		terminos.setSize(200, 30);
-		terminos.setLocation(250, 570);
-		terminos.setFont(new Font("Corbel", Font.BOLD, 13));	
-		ventanaPanel.add(terminos);
-		
-		JRadioButton opcion1 = new JRadioButton("Aceptar");
-		opcion1.setSize(70,20);
-		opcion1.setLocation(230, 610);
-		opcion1.setOpaque(false);
-		ventanaPanel.add(opcion1);
-		
-		JRadioButton opcion2 = new JRadioButton("Rechazar");
-		opcion2.setSize(80,20);
-		opcion2.setLocation(390, 610);
-		opcion2.setOpaque(false);
-		ventanaPanel.add(opcion2);
-				
-		ButtonGroup grupo1 = new ButtonGroup();	
-		grupo1.add(opcion1);
-		grupo1.add(opcion2);
-		
-		
-		JCheckBox casilla = new JCheckBox("Mantener sesion iniciada");
-		casilla.setSize(200, 30);
-		casilla.setOpaque(false);
-		casilla.setLocation(130, 660);
-		casilla.setFont(new Font("Corbel", Font.BOLD, 12));	
-		ventanaPanel.add(casilla);
-		
-		JLabel olvidada = new JLabel("<html><u>¿Has olvidado la contraseña?</u></html>");
-		olvidada.setForeground(Color.BLUE);
-		olvidada.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		olvidada.setSize(200, 30);
-		olvidada.setLocation(370, 660);
-		olvidada.setFont(new Font("Corbel", Font.BOLD, 12));	
-		ventanaPanel.add(olvidada);
 		
 		JButton inicioSesion = new JButton("CREAR CUENTA");
 		inicioSesion.setSize(200, 30);
-		inicioSesion.setLocation(500, 500);
+		inicioSesion.setLocation(280, 400);
 		inicioSesion.setFont(new Font("Corbel", Font.BOLD, 19));	
 		ventanaPanel.add(inicioSesion);
 		
@@ -597,6 +804,309 @@ public class Ventana extends JFrame{
 		
 		return ventanaPanel;
 	}
+	
+	public JPanel Consultar() {
+		
+		JFrame frame = new JFrame();
+		frame.setBounds(100, 100, 800, 800);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(250, 174, 160));
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Usuarios totales 20");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel.setBounds(53, 177, 174, 89);
+		panel.add(lblNewLabel);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(53, 328, 526, 302);
+		panel.add(scrollPane);
+		
+		JTable table = new JTable(20,1);
+		table.setModel(new DefaultTableModel(
+			    new Object[][] {
+			        {"usuario1@example.com"},
+			        {"usuario2@example.com"},
+			        {"usuario3@example.com"},
+			        {"usuario4@example.com"},
+			        {"usuario5@example.com"},
+			        {"usuario6@example.com"},
+			        {"usuario7@example.com"},
+			        {"usuario8@example.com"},
+			        {"usuario9@example.com"},
+			        {"usuario10@example.com"},
+			        {"usuario11@example.com"},
+			        {"usuario12@example.com"},
+			        {"usuario13@example.com"},
+			        {"usuario14@example.com"},
+			        {"usuario15@example.com"},
+			        {"usuario16@example.com"},
+			        {"usuario17@example.com"},
+			        {"usuario18@example.com"},
+			        {"usuario19@example.com"},
+			        {"usuario20@example.com"},
+			    },
+			new String[] {
+				"Usuarios"
+			}
+		));
+		
+		scrollPane.setViewportView(table);
+		
+		JButton btnNewButton = new JButton("Aceptar");
+		btnNewButton.setFont(new Font("Unispace", Font.BOLD, 12));
+		btnNewButton.setBounds(629, 455, 104, 54);
+		panel.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Cancelar");
+		btnNewButton_1.setFont(new Font("Unispace", Font.BOLD, 12));
+		btnNewButton_1.setBounds(629, 551, 104, 54);
+		panel.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_1 = new JLabel("Consulta de usuarios");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 26));
+		lblNewLabel_1.setBounds(253, 11, 298, 128);
+		panel.add(lblNewLabel_1);
+	
+		
+		
+		return panel;
+	}
+	
+	public JPanel RecuperacionDeCuenta() {
+		JFrame frame = new JFrame();
+		frame.setBounds(100, 100, 800, 800);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(180, 166, 236));
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Recuperacion de cuenta");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 26));
+		lblNewLabel_1.setBounds(234, 11, 315, 128);
+		panel.add(lblNewLabel_1);
+		
+		JTextField textField = new JTextField();
+		textField.setBounds(168, 244, 455, 38);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		JTextField textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(168, 367, 455, 38);
+		panel.add(textField_1);
+		
+		JLabel lblNewLabel = new JLabel("Introdusca su correo de recuperacion");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel.setBounds(168, 195, 242, 37);
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_2 = new JLabel("Codigo de verificacion");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_2.setBounds(168, 324, 175, 32);
+		panel.add(lblNewLabel_2);
+		
+		JButton btnNewButton = new JButton("Cancelar");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		btnNewButton.setBounds(460, 468, 89, 47);
+		panel.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Aceptar");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		btnNewButton_1.setBounds(234, 468, 89, 47);
+		panel.add(btnNewButton_1);
+	
+		return panel;
+	}
+	
+	public JPanel AyudaContra() {
+		JFrame frame = new JFrame();
+		frame.setBounds(100, 100, 800, 800);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(187, 243, 253));
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Como recuperar tu contraseña");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 26));
+		lblNewLabel_1.setBounds(168, 11, 408, 83);
+		panel.add(lblNewLabel_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(113, 155, 539, 333);
+		panel.add(scrollPane);
+		
+		
+		JTextArea txtrabrirLaPgina = new JTextArea(80, 50);
+		txtrabrirLaPgina.setTabSize(0);
+		txtrabrirLaPgina.setLineWrap(true);
+		scrollPane.setViewportView(txtrabrirLaPgina);
+		txtrabrirLaPgina.setWrapStyleWord(true); 
+		
+				txtrabrirLaPgina.setText("1-Abrir la página de inicio de sesión:\r\nAccede a la página donde normalmente inicias sesión.\r\n2-Seleccionar opción \"¿Olvidaste tu contraseña?\":\r\nBusca y selecciona el enlace que dice \"¿Olvidaste tu contraseña?\" o algo similar.\r\n3-Introducir tu correo electrónico o nombre de usuario: \r\nIngresa la dirección de correo electrónico o el nombre de usuario asociado a la cuenta.\r\n4-Recibir correo de recuperación: \r\nRevisa tu bandeja de entrada para encontrar el correo de recuperación enviado por el servicio.\r\n5-Abrir el correo de recuperación: \r\nHaz clic en el enlace proporcionado en el correo para iniciar el proceso de restablecimiento de contraseña.\r\n6-Ingresar nueva contraseña: \r\nEn la página de restablecimiento, ingresa una nueva contraseña que cumpla con los requisitos de seguridad.\r\n7-Confirmar nueva contraseña: \r\nVuelve a ingresar la nueva contraseña para confirmarla.\r\n8-Guardar cambios:\r\nHaz clic en \"Guardar\" o \"Restablecer contraseña\" para completar el proceso.\r\n9-Iniciar sesión con la nueva contraseña: \r\nRegresa a la página de inicio de sesión e ingresa la nueva contraseña para acceder a tu cuenta.");
+		return panel;
+	}
+	
+	public JPanel ayudaUsuario() {
+		JFrame frame = new JFrame();
+		frame.setBounds(100, 100, 800, 800);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(169, 218, 167));
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Como crear un usuario");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 26));
+		lblNewLabel_1.setBounds(211, 11, 309, 83);
+		panel.add(lblNewLabel_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(113, 155, 539, 333);
+		panel.add(scrollPane);
+		
+		
+		JTextArea txtrabrirLaPgina = new JTextArea(80, 50);
+		txtrabrirLaPgina.setTabSize(0);
+		txtrabrirLaPgina.setLineWrap(true);
+		scrollPane.setViewportView(txtrabrirLaPgina);
+		txtrabrirLaPgina.setWrapStyleWord(true); 
+		
+				txtrabrirLaPgina.setText("1. Acceder a la página de registro:\r\nVe a la página web donde deseas crear tu cuenta. Generalmente, encontrarás un botón o enlace que dice \"Registrarse\" o \"Crear cuenta\".\r\n"
+				        + "2. Seleccionar la opción \"Crear cuenta\":\r\nHaz clic en el botón o enlace que te permite crear una nueva cuenta.\r\n"
+				        + "3. Ingresar datos personales:\r\nCompleta el formulario con tus datos personales, como nombre completo, dirección de correo electrónico, número de teléfono, etc.\r\n"
+				        + "4. Crear un nombre de usuario:\r\nElige un nombre de usuario único que usarás para acceder a la cuenta. Asegúrate de que sea fácil de recordar y cumpla con los requisitos del sitio (por ejemplo, longitud mínima o uso de caracteres especiales).\r\n"
+				        + "5. Establecer una contraseña:\r\nCrea una contraseña segura que cumpla con los requisitos del sitio (por ejemplo, longitud mínima, uso de letras mayúsculas, números y caracteres especiales). Asegúrate de que sea difícil de adivinar.\r\n"
+				        + "6. Confirmar la contraseña:\r\nVuelve a ingresar la misma contraseña para confirmarla y asegurarte de que no haya errores tipográficos.\r\n"
+				        + "7. Aceptar los términos y condiciones:\r\nLee los términos y condiciones del servicio. Si estás de acuerdo, marca la casilla correspondiente para aceptarlos.\r\n"
+				        + "8. Verificación de correo electrónico:\r\nRevisa tu bandeja de entrada para encontrar un correo de verificación. Abre el correo y haz clic en el enlace de verificación para confirmar tu dirección de correo electrónico.\r\n"
+				        + "9. Completar el registro:\r\nDespués de hacer clic en el enlace de verificación, serás redirigido a la página de confirmación o inicio de sesión. En este punto, tu cuenta estará activa.\r\n"
+				        + "10. Iniciar sesión:\r\nAhora puedes usar tu nombre de usuario y la contraseña que elegiste para iniciar sesión en el sitio.");
+		return panel;		
+	}
+	
+	public JPanel AyudaAcceso() {
+		JFrame frame = new JFrame();
+		frame.setBounds(100, 100, 800, 800);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(203, 163, 211));
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Como acceder al sistema");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 26));
+		lblNewLabel_1.setBounds(211, 11, 360, 83);
+		panel.add(lblNewLabel_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(113, 155, 539, 333);
+		panel.add(scrollPane);
+		
+		
+		JTextArea txtrabrirLaPgina = new JTextArea(80, 50);
+		txtrabrirLaPgina.setTabSize(0);
+		txtrabrirLaPgina.setLineWrap(true);
+		scrollPane.setViewportView(txtrabrirLaPgina);
+		txtrabrirLaPgina.setWrapStyleWord(true); 
+		
+				txtrabrirLaPgina.setText("1. Abrir la página de inicio de sesión:\r\nAccede a la página web del sistema donde normalmente inicias sesión.\r\n"
+				        + "2. Ingresar nombre de usuario:\r\nIntroduce el nombre de usuario o dirección de correo electrónico que registraste en el sistema.\r\n"
+				        + "3. Ingresar contraseña:\r\nIntroduce la contraseña asociada con tu cuenta. Asegúrate de que esté correctamente escrita, respetando mayúsculas, minúsculas y caracteres especiales.\r\n"
+				        + "4. Verificar los datos ingresados:\r\nRevisa que tanto el nombre de usuario como la contraseña sean correctos. Si alguno es incorrecto, recibirás un mensaje de error.\r\n"
+				        + "5. Seleccionar la opción de inicio de sesión:\r\nHaz clic en el botón \"Iniciar sesión\" para proceder a ingresar al sistema.\r\n"
+				        + "6. Verificar autenticación:\r\nUna vez que presiones el botón de inicio de sesión, el sistema verificará tus credenciales y te permitirá acceder a tu cuenta si son correctas.\r\n"
+				        + "7. Resolver problemas de acceso:\r\nSi no puedes acceder, asegúrate de que tu usuario y contraseña sean correctos. Si olvidaste tu contraseña, utiliza la opción de recuperación para restablecerla.\r\n"
+				        + "8. Acceder al sistema:\r\nUna vez autenticado, serás redirigido al panel principal del sistema donde podrás utilizar todas las funciones disponibles.\r\n");
+		return panel;		
+	}
+	
+	public JPanel AltaUsuario() {
+		JFrame frame = new JFrame();
+		frame.setBounds(100, 100, 800, 800);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(215, 208, 159));
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Regristar un usuario");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 26));
+		lblNewLabel_1.setBounds(219, 11, 309, 57);
+		panel.add(lblNewLabel_1);
+		
+		JTextField textField = new JTextField();
+		textField.setBounds(42, 232, 200, 30);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		JTextField textField_1 = new JTextField();
+		textField_1.setBounds(308, 232, 200, 30);
+		panel.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JTextField textField_2 = new JTextField();
+		textField_2.setBounds(42, 313, 434, 30);
+		panel.add(textField_2);
+		textField_2.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Nombre(s):");
+		lblNewLabel.setBounds(42, 196, 150, 25);
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_2 = new JLabel("Correo");
+		lblNewLabel_2.setBounds(42, 277, 137, 25);
+		panel.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Primer apellido:");
+		lblNewLabel_3.setBounds(308, 196, 137, 25);
+		panel.add(lblNewLabel_3);
+		
+		JTextField textField_3 = new JTextField();
+		textField_3.setBounds(548, 232, 200, 30);
+		panel.add(textField_3);
+		textField_3.setColumns(10);
+		
+		JLabel lblNewLabel_4 = new JLabel("Segundo apellido:");
+		lblNewLabel_4.setBounds(548, 196, 150, 25);
+		panel.add(lblNewLabel_4);
+		
+		JTextField textField_4 = new JTextField();
+		textField_4.setBounds(42, 399, 200, 30);
+		panel.add(textField_4);
+		textField_4.setColumns(10);
+		
+		JLabel lblNewLabel_5 = new JLabel("Contraseña:\r\n");
+		lblNewLabel_5.setBounds(42, 363, 137, 25);
+		panel.add(lblNewLabel_5);
+		
+		JButton btnNewButton = new JButton("Aceptar");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setBounds(219, 527, 130, 50);
+		panel.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Cancelar");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_1.setBounds(439, 527, 130, 50);
+		panel.add(btnNewButton_1);
+		return panel;
+	}
+	
+	public JPanel BajaUsuario() {
+		JPanel panel = new JPanel();
+		return panel;
+	}
+	
 	
 	//@Override
 //  	public void paint(Graphics g) {
