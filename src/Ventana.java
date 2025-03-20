@@ -53,7 +53,7 @@ public class Ventana extends JFrame{
 		//this.add(this.calculadora());
 		//this.add(this.calculadoraPro());
 		//this.add(this.InterfazMasterPro());
-		this.add(this.login());
+		//this.add(this.login());
 		//this.add(this.registro());
 		
 		
