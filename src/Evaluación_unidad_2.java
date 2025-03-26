@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
