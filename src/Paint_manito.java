@@ -4,20 +4,45 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class Paint_manito {
+public class Paint_manito implements MouseListener, MouseMotionListener{
 
 	private JFrame frame;
 	private JTextField textField;
+	private DrawingPanel drawingPanel; 
+ 	
+ 	private Point lastPoint; // Para almacenar la última posición del mouse
+      // Para almacenar los puntos dibujados
+ 	private List<Point> points = new ArrayList<>();
+ 	
+ 	private List<Rectangle> figuras = new ArrayList<>();
+ 	
+     List<List<Point>> listaDePuntos = new ArrayList<>();
+   //1 = pincel, 2 = cuadrado
+     private int method = 1;
 
 	/**
 	 * Launch the application.
@@ -121,6 +146,16 @@ public class Paint_manito {
 		btnNewButton_7.setIcon(new ImageIcon(port2));
 		
 		JButton btnNewButton_8 = new JButton("");
+		btnNewButton_8.addActionListener(new ActionListener() {
+			 
+ 			@Override
+ 			public void actionPerformed(ActionEvent e) {
+ 				// TODO Auto-generated method stub
+ 				
+ 				method = 2;
+ 			}
+ 			
+ 		});
 		btnNewButton_8.setBackground(new Color(255, 255, 255));
 		btnNewButton_8.setBounds(10, 188, 30, 30);
 		panel_1.add(btnNewButton_8);
@@ -152,6 +187,13 @@ public class Paint_manito {
 		btnNewButton_10.setIcon(new ImageIcon(d3));
 		
 		JButton btnNewButton_11 = new JButton("Pincel");
+		btnNewButton_11.addActionListener(new ActionListener() {
+ 			public void actionPerformed(ActionEvent e) {
+ 				
+ 				method = 1;
+ 				
+ 			}
+ 		});
 		btnNewButton_11.setBounds(10, 288, 110, 23);
 		panel_1.add(btnNewButton_11);
 		ImageIcon t1 =new ImageIcon("imagenes/picel.png");
@@ -198,6 +240,133 @@ public class Paint_manito {
 		panel_2.setBounds(150, 11, 724, 589);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
+		
+		drawingPanel = new DrawingPanel();
+		drawingPanel.setBounds(0, 0, 724, 589);
+        panel_2.add(drawingPanel);
+
+        drawingPanel.addMouseListener(this);
+        drawingPanel.addMouseMotionListener(this);
 	}
 
-}
+	@Override
+ 	public void mouseClicked(MouseEvent e) {
+ 		// TODO Auto-generated method stub
+		
+		if(method==2) {
+ 			Rectangle tmp = new Rectangle(e.getX(),e.getY(),100,60);
+ 			figuras.add(tmp);
+ 		}
+ 		
+ 		
+ 		drawingPanel.repaint();
+ 	}
+ 
+ 	@Override
+ 	public void mousePressed(MouseEvent e) {
+ 		// TODO Auto-generated method stub 
+ 		lastPoint = e.getPoint();
+         points.add(lastPoint); // Añadir el primer punto
+          
+ 	}
+ 
+ 	@Override
+ 	public void mouseReleased(MouseEvent e) {
+ 		// TODO Auto-generated method stub 
+ 		
+ 		
+ 		ArrayList<Point> listaCopiada = (ArrayList<Point>) (((ArrayList<Point>) points).clone());
+ 		
+ 		listaDePuntos.add(listaCopiada); 
+ 		points.clear();
+ 		
+ 		System.out.println(listaDePuntos);
+ 	}
+ 
+ 	@Override
+ 	public void mouseEntered(MouseEvent e) {
+ 		// TODO Auto-generated method stub 
+ 	}
+ 
+ 	@Override
+ 	public void mouseExited(MouseEvent e) {
+ 		// TODO Auto-generated method stub 
+ 	}
+ 
+ 	@Override
+ 	public void mouseDragged(MouseEvent e) {
+ 		// TODO Auto-generated method stub
+ 		 Point newPoint = e.getPoint(); 
+ 		 
+ 		 if(method==1)
+ 			 points.add(newPoint);  
+ 	        
+ 	     drawingPanel.repaint();
+ 	        
+ 	     lastPoint = newPoint;
+ 	        
+ 	        
+ 	}
+ 
+ 	class DrawingPanel extends JPanel {
+ 	    public DrawingPanel() {
+ 	        setBackground(Color.WHITE);
+ 	    }
+ 
+ 	    @Override
+ 	    protected void paintComponent(Graphics g) {
+ 	        super.paintComponent(g);
+ 	        Graphics2D g2d = (Graphics2D) g;
+ 	        
+ 	        // Configuración del dibujo
+ 	        g2d.setColor(Color.BLACK);
+ 	        g2d.setStroke(new BasicStroke(3));
+ 	        
+ 	        // Dibujar todos los trazos guardados (listaDePuntos)
+ 	        for (List<Point> trazo : listaDePuntos) {
+ 	            if (trazo.size() > 1) {
+ 	                for (int i = 1; i < trazo.size(); i++) {
+ 	                    Point p1 = trazo.get(i - 1);
+ 	                    Point p2 = trazo.get(i);
+ 	                    g2d.drawLine(p1.x, p1.y, p2.x, p2.y);
+ 	                }
+ 	            }
+ 	        }
+ 	        
+ 	        // Dibujar el trazo actual (points) mientras se arrastra el mouse
+ 	        if (points.size() > 1) {
+ 	            for (int i = 1; i < points.size(); i++) {
+ 	                Point p1 = points.get(i - 1);
+ 	                Point p2 = points.get(i);
+ 	                g2d.drawLine(p1.x, p1.y, p2.x, p2.y);
+ 	            }
+ 	        }
+ 	       for (Iterator iterator = figuras.iterator(); iterator.hasNext();) {
+				Rectangle rectangle = (Rectangle) iterator.next();
+				
+				g2d.drawRect(rectangle.x, rectangle.y, rectangle.w, rectangle.h);
+				
+			}
+	    }
+	}
+	
+	class Rectangle{
+		
+		private int x,y,w,h;
+		
+		public Rectangle(int x, int y,int w, int h)
+		{
+			this.x = x;
+			this.y = y;
+			this.w = w;
+			this.h = h;
+		}
+	}
+ 
+ 	@Override
+ 	public void mouseMoved(MouseEvent e) {
+ 		// TODO Auto-generated method stub
+ 		
+ 	}
+ 
+ }
