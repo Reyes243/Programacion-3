@@ -524,6 +524,7 @@ public class Ventana extends JFrame{
 	}
 	
 	public JPanel login() {
+		
 
 		JPanel panel = new JPanel();
 
@@ -684,6 +685,13 @@ public class Ventana extends JFrame{
 	}
 	
 	public JPanel registro() {
+		JFrame ventana = new JFrame();
+		
+		ventana.setTitle("Registro"); 
+	    ventana.setSize(1000, 600);
+	    ventana.setLocationRelativeTo(null);
+	    ventana.setResizable(true); 
+	    ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel ventanaPanel = new JPanel();
 		
