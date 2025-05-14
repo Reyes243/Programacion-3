@@ -95,35 +95,38 @@ public void login() {
 			public void actionPerformed(ActionEvent e) {
 
 				Boolean flag1 = false, flag2 = false;
-
+				
 				if (email.getText().equals("")) {
-					email.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-
-				} else {
-					email.setBorder(BorderFactory.createLineBorder(Color.green, 3));
+					email.setBorder(BorderFactory.createLineBorder(Color.RED,3));
+					JOptionPane.showMessageDialog(null, "Fatal error","hola",JOptionPane.WARNING_MESSAGE);
+					
+				}else {
+					email.setBorder(BorderFactory.createLineBorder(Color.green,3));
 					flag1 = true;
 				}
 
 				String myPassword = new String(pass.getPassword());
 				if (myPassword.equals("")) {
-					pass.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-
-				} else {
-					pass.setBorder(BorderFactory.createLineBorder(Color.green, 3));
+					pass.setBorder(BorderFactory.createLineBorder(Color.RED,3));
+					JOptionPane.showMessageDialog(null, "Fatal error","hola",JOptionPane.WARNING_MESSAGE);
+					
+				}else {
+					pass.setBorder(BorderFactory.createLineBorder(Color.green,3));
 					flag2 = true;
 				}
-
+				
 				if (flag1 && flag2) {
-					if (email.getText().equals("luquin@gmail.com")) {
-						if (myPassword.equals("contra123"))
-							JOptionPane.showMessageDialog(null, "Bienvenido", "hola", JOptionPane.WARNING_MESSAGE);
+					if(email.getText().equals("reyes@gmail.com")) {
+						if(myPassword.equals("contra123"))
+							JOptionPane.showMessageDialog(null, "Bienvenido","hola",JOptionPane.WARNING_MESSAGE);
 						else
-							JOptionPane.showMessageDialog(null, "Fatal error", "hola", JOptionPane.WARNING_MESSAGE);
-					} else
-						JOptionPane.showMessageDialog(null, "Fatal error", "hola", JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Fatal error","hola",JOptionPane.WARNING_MESSAGE);
+					}
+					else
+						JOptionPane.showMessageDialog(null, "Fatal error","hola",JOptionPane.WARNING_MESSAGE);
 				}
 			}
-
+			
 		});
 		JButton ir_registro = new JButton("ir al registro");
 		ir_registro.setSize(130, 50);
