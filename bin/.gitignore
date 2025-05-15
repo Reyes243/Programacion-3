@@ -1,4 +1,5 @@
-/views/
-/File/
-/models/
+/aplication/
+/controllers/
 /db/
+/models/
+/views/

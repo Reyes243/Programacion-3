@@ -1,33 +1,34 @@
 package models;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import db.DBConnection;
 
 public class AuthModel {
-	
-	public boolean login (String email, String password) {
-		
-		String url=this.getClass().getResource("/File/user.txt").getPath();
-		BufferedReader reader;
-		try {
-			   reader = new BufferedReader(new FileReader("/File/user.txt"));
-			   String line = reader.readLine();
 
-			   while (line != null) {
-			    System.out.println(line);
-			    
-			    line = reader.readLine();
-			   }
+    
+    public boolean login(String email, String password) {
+        String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
 
-			   reader.close();
-			  } catch (IOException e) {
-			   e.printStackTrace();
-			  }
-		return false;
-		
-	}
-	
-	
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
+            ps.setString(1, email);
+            ps.setString(2, password);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                   
+                    return true;
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; 
+    }
 }
